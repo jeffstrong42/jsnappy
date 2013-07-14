@@ -14,9 +14,13 @@
 
 		<div id="nav">
 			<ul>
-				<li>{{ HTML::link('/','Home') }}</li>
-				<li>{{ HTML::link('/','Register') }}</li>
-				<li>{{ HTML::link('/','Login') }}</li>
+				<li>{{ HTML::link_to_route('home', 'Home') }}</li>
+				@if(!Auth::check())
+					<li>{{ HTML::link_to_route('register','Register') }}</li>
+					<li>{{ HTML::link_to_route('login','Login') }}</li>
+				@else
+					<li>{{ HTML::link('logout','Logout (' . Auth::user()->username . ')') }}</li>
+				@endif
 			</ul>
 		</div><!-- end nav -->
 
